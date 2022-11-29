@@ -100,7 +100,6 @@ h3 {
 .fas {
   font-size: 30px;
   color: rgb(129, 129, 129);
-  margin-right: 30px;
 }
 
 .fas:hover {
@@ -109,8 +108,10 @@ h3 {
 
 .main-button {
   font-size: 40px;
+  width: 2rem;
   position: relative;
   top: 3px;
+  margin: 0 2rem;
 }
 
 /* Media Query: iPhone (Vertical) */
