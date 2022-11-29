@@ -4,6 +4,9 @@ const audio = document.querySelector("audio");
 const prevBtn = document.getElementById("prev");
 const playBtn = document.getElementById("play");
 const nextBtn = document.getElementById("next");
+const currTimeEl = document.getElementById("current-time");
+const durantionEl = document.getElementById("duration");
+const progressBar = document.getElementById("progress");
 
 const songs = [
   {
@@ -78,6 +81,32 @@ const nextSong = () => {
   playSong();
 };
 
-// Event Listenet from prev and next buttons
+//Get current time of audio
+const updateProgessBar = (e) => {
+  if (isPlaying) {
+    const { duration, currentTime } = e.srcElement;
+    let progressPercent = (currentTime / duration) * 100;
+    progressBar.style.width = `${progressPercent}%`;
+    //Calculate displays for duration
+    timeConverter(duration, durantionEl);
+    timeConverter(currentTime, currTimeEl);
+  }
+};
+
+const timeConverter = (time, element) => {
+  let timeConverted;
+  let minutes = Math.floor(time / 60);
+  let extraSeconds = Math.floor(time % 60);
+  minutes = minutes < 10 ? "0" + minutes : minutes;
+  extraSeconds = extraSeconds < 10 ? "0" + extraSeconds : extraSeconds;
+  //Delay
+  if (minutes && extraSeconds) {
+    timeConverted = minutes + " : " + extraSeconds;
+    element.textContent = timeConverted;
+  }
+};
+
+// Event Listeners
 prevBtn.addEventListener("click", prevSong);
 nextBtn.addEventListener("click", nextSong);
+audio.addEventListener("timeupdate", updateProgessBar);
