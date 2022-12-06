@@ -65,11 +65,15 @@ h3 {
 
 /* Progress */
 .audio-container {
+  width: 100%;
+}
+
+.progress-container {
   background: #fff;
   border-radius: 5px;
   cursor: pointer;
   margin: 40px 20px;
-  height: 4px;
+  height: 5px;
   width: 90%;
 }
 
