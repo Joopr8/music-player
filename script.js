@@ -8,6 +8,7 @@ const currTimeEl = document.getElementById("current-time");
 const durantionEl = document.getElementById("duration");
 const progress = document.getElementById("progress");
 const progressContainer = document.getElementById("progress-container");
+const volumeBtn = document.getElementById("volume");
 
 const songs = [
   {
@@ -33,6 +34,7 @@ const songs = [
 ];
 
 let isPlaying = false;
+let isMuted = false;
 
 //Play
 const playSong = () => {
@@ -117,9 +119,35 @@ const setProgressBar = (e) => {
   audio.currentTime = (clickX / width) * duration;
 };
 
+const changeSound = () => {
+  if ((isMuted = true)) {
+    audio.volume = 1;
+    volumeBtn.classList.replace("fa-volume-high", "fa-volume-off");
+  }
+  if ((isMuted = false)) {
+    audio.volume = 0;
+    volumeBtn.classList.replace("fa-volume-off", "fa-volume-high");
+  }
+};
+
+const muteAudio = () => {
+  audio.volume = 0;
+  volumeBtn.classList.replace("fa-volume-high", "fa-volume-off");
+  isMuted = true;
+};
+
+const unMuteAudio = () => {
+  audio.volume = 1;
+  volumeBtn.classList.replace("fa-volume-off", "fa-volume-high");
+  isMuted = false;
+};
+
 // Event Listeners
 prevBtn.addEventListener("click", prevSong);
 nextBtn.addEventListener("click", nextSong);
 audio.addEventListener("ended", nextSong);
 audio.addEventListener("timeupdate", updateProgessBar);
 progressContainer.addEventListener("click", setProgressBar);
+volumeBtn.addEventListener("click", () =>
+  isMuted ? unMuteAudio() : muteAudio()
+);
