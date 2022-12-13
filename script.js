@@ -110,24 +110,10 @@ const timeConverter = (time, element) => {
 };
 
 const setProgressBar = (e) => {
-  const width = e.srcElement.clientWidth;
+  let width = progressContainer.offsetWidth;
   const clickX = e.offsetX;
   const { duration } = audio;
-  const percentClicked = (clickX / width) * 100;
-  console.log(percentClicked);
-
   audio.currentTime = (clickX / width) * duration;
-};
-
-const changeSound = () => {
-  if ((isMuted = true)) {
-    audio.volume = 1;
-    volumeBtn.classList.replace("fa-volume-high", "fa-volume-off");
-  }
-  if ((isMuted = false)) {
-    audio.volume = 0;
-    volumeBtn.classList.replace("fa-volume-off", "fa-volume-high");
-  }
 };
 
 const muteAudio = () => {
